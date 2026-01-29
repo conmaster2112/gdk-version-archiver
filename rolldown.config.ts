@@ -7,5 +7,5 @@ export default {
       cli: "./src/cli/main.ts",
    },
    treeshake: true,
-   output: { dir: './dist', cleanDir: true }
+   output: { dir: './dist', cleanDir: true, minify: true }
 } satisfies ConfigExport;
