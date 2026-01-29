@@ -1,0 +1,38 @@
+{
+   "name": "gdk-version-archiver",
+   "version": "1.0.0-alpha",
+   "description": "",
+   "keywords": [],
+   "license": "MIT",
+   "author": "conmaster2112",
+   "type": "module",
+   "bin": {
+      "gdk-archive-manager": "./bin/cli"
+   },
+   "engines": {
+      "bun": ">=1.0.0",
+      "node": "please-use-bun"
+   },
+   "files": [
+      "bin/cli",
+      "dist/*",
+      "package.json",
+      "README.md",
+      "LICENSE"
+   ],
+   "scripts": {
+      "build": "rolldown -c",
+      "gdk-archive-manager": "rolldown -c && bun ./dist/cli.js"
+   },
+   "devDependencies": {
+      "@types/bun": "^1.3.5",
+      "@typescript/native-preview": "7.0.0-dev.20260108.1",
+      "con-utils": "^0.0.2",
+      "oxfmt": "^0.23.0",
+      "oxlint": "^1.38.0",
+      "rolldown": "1.0.0-beta.59",
+      "rolldown-plugin-dts": "^0.20.0",
+      "typescript": "6.0.0-dev.20260108"
+   },
+   "packageManager": "pnpm@10.25.0"
+}
