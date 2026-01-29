@@ -10,22 +10,21 @@ A CLI tool for archiving and managing Minecraft GDK installations on Windows. It
 - **Concurrent Copying**: Fast archiving using a task concurrency channel.
 
 ## Setup and Usage
-
 **Prerequisites**: Windows OS, [Bun](https://bun.sh/) runtime, and Powershell.
 
 ```bash
-pnpm install
+pnpm add gdk-version-archiver
 npm run build
 ```
 
-Binary name: `gdk-archive-manager`
+CLI name: `gdkva`
 
-- **Archive**: `bunx gdk-archive-manager archive [package-pattern]`
+- **Archive**: `gdkva archive [package-pattern]`
    - `--tag <name>`: Target tag (default: `current`).
    - `--force`: Overwrite existing mirrors.
    - `--concurrency <n>`: Parallel file copy limit. Default is `10`, recommended is to follow default value.
-- **List**: `bunx gdk-archive-manager list` - Show stored mirrors and tags.
-- **Run**: `bunx gdk-archive-manager run --tag <name>` - Launch a tagged version. Default is `current` tag.
+- **List**: `gdkva list` - Show stored mirrors and tags.
+- **Run**: `gdkva run --tag <name>` - Launch a tagged version. Default is `current` tag.
 
 Global flags: `--verbose`, `--tag <name>`.
 
@@ -38,4 +37,8 @@ Data is stored in `%APPDATA%\ConMaster.BedrockArchiver\clients\`.
 
 The tool bypasses GDK file protections by invoking a copy instruction within the package context. It then uses symlink junctions to allow external tools to reference a static path while the underlying version is updated.
 
-MIT License
+### Is it slow?
+This tool performs have to call powershell.exe under the hood to get access to the windows package manager to obtain package information, after wards its only matter of your hard-drive write throughput, by default this tool performs 10 copy operations concurrently.
+
+### Why it feels slow?
+We only logging directories thats are currently being traversed, not all files, so if you think its being stuck its probably coping hundreds of files. 
