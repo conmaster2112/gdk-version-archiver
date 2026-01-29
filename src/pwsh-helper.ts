@@ -1,5 +1,5 @@
-import { lstat, realpath } from 'node:fs/promises';
-import { LOG } from './logger';
+import {lstat, realpath} from 'node:fs/promises';
+import {LOG} from './logger';
 
 export interface PackageInformation {
    PackageFamilyName: string;
@@ -11,9 +11,8 @@ export class PowershellHelper {
    public static async GetAppxPackage(
       packageNameLike: string
    ): Promise<PackageInformation[] | null> {
-
       LOG(`Requesting Packages\n`);
-      let { output, exitCode } = await PowershellHelper.runRawCommand(
+      let {output, exitCode} = await PowershellHelper.runRawCommand(
          `((Get-AppxPackage -Name ${packageNameLike}) | ForEach-Object { "$($_.PackageFamilyName);$($_.Version);$($_.InstallLocation)" })`
       );
 
@@ -30,13 +29,14 @@ export class PowershellHelper {
                   string,
                   string
                ];
-               return { PackageFamilyName, Version, InstallationPath };
-            }).filter(e => e?.PackageFamilyName) ?? null
+               return {PackageFamilyName, Version, InstallationPath};
+            })
+            .filter((e) => e?.PackageFamilyName) ?? null
       );
    }
    public static async runRawCommand(
       command: string
-   ): Promise<{ output: string | null; exitCode: number }> {
+   ): Promise<{output: string | null; exitCode: number}> {
       LOG(`Spawning PWSH command\n`);
       // 4. Execute using Bun.spawn
       const process = Bun.spawn({
@@ -53,7 +53,7 @@ export class PowershellHelper {
       // Equivalent to C# WaitForExit
       const code = await process.exited;
       LOG(`PWSH Process exited with code: ${code}\n`);
-      return { exitCode: code, output: code === 0 ? stdout : stderr.length > 0 ? stderr : null };
+      return {exitCode: code, output: code === 0 ? stdout : stderr.length > 0 ? stderr : null};
    }
    public static async InvokeCommandInDesktopPackage(
       packageFamilyName: string,

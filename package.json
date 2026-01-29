@@ -5,13 +5,8 @@
    "keywords": [],
    "license": "MIT",
    "author": "conmaster2112",
-   "type": "module",
    "bin": {
       "gdkva": "./bin/cli"
-   },
-   "engines": {
-      "bun": ">=1.0.0",
-      "node": "please-use-bun"
    },
    "files": [
       "bin/cli",
@@ -20,6 +15,7 @@
       "README.md",
       "LICENSE"
    ],
+   "type": "module",
    "scripts": {
       "build": "rolldown -c",
       "gdk-archive-manager": "rolldown -c && bun ./dist/cli.js"
@@ -33,6 +29,10 @@
       "rolldown": "1.0.0-beta.59",
       "rolldown-plugin-dts": "^0.20.0",
       "typescript": "6.0.0-dev.20260108"
+   },
+   "engines": {
+      "bun": ">=1.0.0",
+      "node": "please-use-bun"
    },
    "packageManager": "pnpm@10.25.0"
 }

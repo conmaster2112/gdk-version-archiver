@@ -1,11 +1,13 @@
-import { FormatCode, DIM as D } from "con-utils/general";
+import {FormatCode, DIM as D} from 'con-utils/general';
 let LOG_ENABLED = false;
-export const SET_VERBOSE = (value: boolean) => LOG_ENABLED = value;
+export const SET_VERBOSE = (value: boolean) => (LOG_ENABLED = value);
 const rgb = FormatCode.createForegroundRGB;
 const INFO_CODE = rgb(80, 175, 199);
 const WARN_CODE = rgb(199, 133, 80);
 const ERROR_CODE = rgb(199, 80, 96);
-const E = ERROR_CODE.wrap, I = INFO_CODE.wrap, W = WARN_CODE.wrap;
+const E = ERROR_CODE.wrap,
+   I = INFO_CODE.wrap,
+   W = WARN_CODE.wrap;
 export const ACCENT = FormatCode.create(92, 39).wrap;
 export const DIM = D.wrap;
 export const OUTPUT = (raw: string | Uint8Array) => process.stderr.write(raw);

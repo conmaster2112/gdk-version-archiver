@@ -21,9 +21,9 @@ npm run build
 Binary name: `gdk-archive-manager`
 
 - **Archive**: `bunx gdk-archive-manager archive [package-pattern]`
-  - `--tag <name>`: Target tag (default: `current`).
-  - `--force`: Overwrite existing mirrors.
-  - `--concurrency <n>`: Parallel file copy limit. Default is `10`, recommended is to follow default value.
+   - `--tag <name>`: Target tag (default: `current`).
+   - `--force`: Overwrite existing mirrors.
+   - `--concurrency <n>`: Parallel file copy limit. Default is `10`, recommended is to follow default value.
 - **List**: `bunx gdk-archive-manager list` - Show stored mirrors and tags.
 - **Run**: `bunx gdk-archive-manager run --tag <name>` - Launch a tagged version. Default is `current` tag.
 
@@ -32,6 +32,7 @@ Global flags: `--verbose`, `--tag <name>`.
 ## Storage and Mechanics
 
 Data is stored in `%APPDATA%\ConMaster.BedrockArchiver\clients\`.
+
 - `mirrors/`: Full version file structures.
 - `tags/`: Junctions pointing to specific mirrors.
 

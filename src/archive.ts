@@ -1,11 +1,11 @@
-import { readFile, copyFile, mkdir } from 'node:fs/promises';
-import { CLI, Command } from './cli';
-import { PowershellHelper } from './pwsh-helper';
-import { existsSync, realpathSync } from 'node:fs';
-import { dirname, join, resolve } from 'node:path';
-import { Glob } from 'bun';
-import { ENSURE_FOLDERS, MIRRORS_FOLDER_PATH } from './constants';
-import { ERROR } from './logger';
+import {readFile, copyFile, mkdir} from 'node:fs/promises';
+import {CLI, Command} from './cli';
+import {PowershellHelper} from './pwsh-helper';
+import {existsSync, realpathSync} from 'node:fs';
+import {dirname, join, resolve} from 'node:path';
+import {Glob} from 'bun';
+import {ENSURE_FOLDERS, MIRRORS_FOLDER_PATH} from './constants';
+import {ERROR} from './logger';
 
 export async function main(): Promise<void> {
    await ENSURE_FOLDERS();
@@ -13,9 +13,11 @@ export async function main(): Promise<void> {
    if (!packages) return void console.error('Failed to invoke');
    if (!packages[0]) return void console.error('Installation not found');
 
-   let { PackageFamilyName, InstallationPath, Version } = packages[0];
-   if (!PackageFamilyName.toLowerCase().includes("minecraft"))
-      return void ERROR(`Minecraft Package Not Found: Looking for preview? Run with *minecraftwindowsbeta*`);
+   let {PackageFamilyName, InstallationPath, Version} = packages[0];
+   if (!PackageFamilyName.toLowerCase().includes('minecraft'))
+      return void ERROR(
+         `Minecraft Package Not Found: Looking for preview? Run with *minecraftwindowsbeta*`
+      );
    InstallationPath = realpathSync(InstallationPath);
    const PACKAGE_NAME = PackageFamilyName.substring(
       PackageFamilyName.indexOf('.') + 1,
@@ -49,7 +51,7 @@ export async function main(): Promise<void> {
       const d = dirname(destination);
       if (!existsSync(d)) {
          console.log('\x1b[34mCoping Folder: ' + d.substring(FOLDER_NAME.length));
-         await mkdir(d, { recursive: true });
+         await mkdir(d, {recursive: true});
       }
 
       const task = copyFile(join(InstallationPath, path), join(FOLDER_NAME, path)).then(
