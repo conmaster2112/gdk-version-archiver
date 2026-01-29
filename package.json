@@ -7,7 +7,7 @@
    "author": "conmaster2112",
    "type": "module",
    "bin": {
-      "gdk-archive-manager": "./bin/cli"
+      "gdkva": "./bin/cli"
    },
    "engines": {
       "bun": ">=1.0.0",
